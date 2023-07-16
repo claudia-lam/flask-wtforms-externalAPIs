@@ -58,3 +58,8 @@ class Pet(db.Model):
         default=True,
         nullable=False
     )
+
+    @property
+    def available(self):
+        """Returns available"""
+        return "available" if self.available else "not available"
