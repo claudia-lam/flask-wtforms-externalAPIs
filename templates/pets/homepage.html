@@ -4,15 +4,29 @@
 
 {% block content %}
   <h1>Pets</h1>
-{% for pet in pets%}
-  <div>
-    <figure>
-      <a href="/{{pet.id}}"><img src="{{pet.photo_url}}" alt="a cute pet"></a>
-      <figcaption>{{pet.name}} is {{pet.availability}}</figcaption>
-    </figure>
+{% for pet in pets %}
 
+  {% if pet.available %}
+    <h3>Available Pets</h3>
+    <div class="available">
+      <figure>
+        <a href="/{{pet.id}}"><img src="{{pet.photo_url}}" alt="a cute pet"></a>
+        <figcaption>{{pet.name}} is {{pet.availability}}</figcaption>
+      </figure>
+
+  {% else %}
+    <h3>Not Available Pets</h3>
+    <div class="not-available">
+      <figure>
+        <a href="/{{pet.id}}"><img src="{{pet.photo_url}}" alt="a cute pet"></a>
+        <figcaption>{{pet.name}} is {{pet.availability}}</figcaption>
+      </figure>
+
+  {% endif %}
   </div>
+
 {% endfor %}
+
 <form action="/add" method="get">
   <button>Add Pet</button>
 </form>
