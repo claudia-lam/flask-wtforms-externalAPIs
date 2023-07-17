@@ -7,7 +7,7 @@
 {% for pet in pets%}
   <div>
     <figure>
-      <img src="{{pet.photo_url}}" alt="a cute pet">
+      <a href="/{{pet.id}}"><img src="{{pet.photo_url}}" alt="a cute pet"></a>
       <figcaption>{{pet.name}} is {{pet.availability}}</figcaption>
     </figure>
 
