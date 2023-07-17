@@ -1,7 +1,7 @@
 """Forms for adopt app."""
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, TextAreaField
+from wtforms import StringField, SelectField, TextAreaField, BooleanField
 from wtforms.validators import InputRequired, Optional, Length, URL
 
 
@@ -36,3 +36,6 @@ class PetForm(FlaskForm):
         "Notes",
         validators=[Optional()]
     )
+
+    available = BooleanField(
+        'Available')
