@@ -12,9 +12,13 @@ class PetForm(FlaskForm):
         "Name",
         validators=[InputRequired(), Length(max=25)])
 
-    species = StringField(
+    species = SelectField(
         "Species",
-        validators=[Length(max=30), InputRequired()])
+        validators=[InputRequired()], choices=[
+            ('dog', 'Dog'),
+            ('cat', 'Cat'),
+            ('porcupine', 'Porcupine')
+        ])
 
     photo_url = StringField(
         "Photo URL",
