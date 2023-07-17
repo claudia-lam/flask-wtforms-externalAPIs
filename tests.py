@@ -76,3 +76,17 @@ class PetViewTestCase(TestCase):
 
             self.assertEqual(resp.status_code, 200)
             self.assertIn("""<form id="pet-add-form" method="POST">""", html)
+
+    def test_add_pet(self):
+        with self.client as c:
+            resp = c.post("/add", data={
+                "name": "test_pet_2",
+                "species": "dog",
+                "photo_url": "",
+                "age": "baby"
+            }, follow_redirects=True)
+
+            html = resp.text
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn("test_pet_2", html)
