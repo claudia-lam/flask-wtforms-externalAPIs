@@ -75,3 +75,4 @@ class PetViewTestCase(TestCase):
             html = resp.text
 
             self.assertEqual(resp.status_code, 200)
+            self.assertIn("""<form id="pet-add-form" method="POST">""", html)
