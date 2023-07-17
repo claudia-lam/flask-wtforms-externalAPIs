@@ -65,5 +65,5 @@ class PetViewTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn("test1_first", html)
-            self.assertIn("test1_last", html)
+            self.assertIn("test_pet", html)
+            self.assertIn("available", html)
