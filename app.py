@@ -54,7 +54,7 @@ def add_pet():
         return redirect("/")
 
     else:
-        return render_template("/pets/add.html", form=form)
+        return render_template("pets/add.html", form=form)
 
 
 @app.route("/<int:pet_id>", methods=["GET", "POST"])
@@ -62,7 +62,7 @@ def edit_pet(pet_id):
     """Display pet details; Pet edit form; handle editing. """
 
     pet = Pet.query.get_or_404(pet_id)
-    return render_template('details.html', pet=pet)
+    return render_template('pets/details.html', pet=pet)
     # if validate on submit
     # add to db
     # otherwise
