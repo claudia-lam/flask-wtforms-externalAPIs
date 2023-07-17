@@ -60,6 +60,6 @@ class Pet(db.Model):
     )
 
     @property
-    def available(self):
+    def availability(self):
         """Returns available"""
         return "available" if self.available else "not available"
