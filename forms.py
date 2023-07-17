@@ -22,7 +22,7 @@ class PetForm(FlaskForm):
 
     photo_url = StringField(
         "Photo URL",
-        validators=[URL()])
+        validators=[URL(), Optional()])
 
     age = SelectField('Age',
                       validators=[InputRequired()],
@@ -46,7 +46,7 @@ class PetEditForm(FlaskForm):
 
     photo_url = StringField(
         "Photo URL",
-        validators=[URL()])
+        validators=[URL(), Optional()])
 
     notes = TextAreaField(
         "Notes",
