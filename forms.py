@@ -21,7 +21,7 @@ class PetForm(FlaskForm):
         validators=[URL()])
 
     age = SelectField('Age',
-                      InputRequired(),
+                      validators=[InputRequired()],
                       choices=[
                           ('baby', 'Baby'),
                           ('young', 'Young'),
@@ -30,5 +30,5 @@ class PetForm(FlaskForm):
 
     notes = TextAreaField(
         "Notes",
-        Optional()
+        validators=[Optional()]
     )
