@@ -91,3 +91,12 @@ class PetViewTestCase(TestCase):
 
             self.assertEqual(resp.status_code, 200)
             self.assertIn("test_pet_2", html)
+
+    def test_show_pet_details(self):
+        with self.client as c:
+            resp = c.get(f"/{self.pet_id}")
+            html = resp.text
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn("baby", html)
+            self.assertIn("dog", html)
