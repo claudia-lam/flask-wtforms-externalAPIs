@@ -100,3 +100,12 @@ class PetViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn("young", html)
             self.assertIn("test_species", html)
+
+    def test_show_edit_form(self):
+        with self.client as c:
+            resp = c.get(f"/{self.pet_id}")
+            html = resp.text
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn("""<form id="pet-edit-form" method="POST">
+""", html)
