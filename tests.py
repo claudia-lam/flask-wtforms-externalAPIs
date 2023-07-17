@@ -109,3 +109,15 @@ class PetViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn("""<form id="pet-edit-form" method="POST">
 """, html)
+
+    def test_edit_form(self):
+        with self.client as c:
+            resp = c.post(f"/{self.pet_id}", data={
+                "notes": "test new note"
+            }, follow_redirects=True)
+
+            html = resp.text
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn("test_pet", html)
+            self.assertIn("test new note", html)
