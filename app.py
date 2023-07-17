@@ -54,4 +54,4 @@ def add_pet():
         return redirect("/")
 
     else:
-        return render_template("/pets/homepage.html", form=form)
+        return render_template("/pets/add.html", form=form)
