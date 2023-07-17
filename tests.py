@@ -42,7 +42,7 @@ class PetViewTestCase(TestCase):
             species="test_species",
             photo_url=None,
             age="young",
-            available=True
+            available=False
         )
 
         db.session.add(test_pet)
@@ -66,4 +66,4 @@ class PetViewTestCase(TestCase):
 
             self.assertEqual(resp.status_code, 200)
             self.assertIn("test_pet", html)
-            self.assertIn("available", html)
+            self.assertIn(f"is not available", html)
