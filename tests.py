@@ -67,3 +67,4 @@ class PetViewTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn("test_pet", html)
             self.assertIn(f"is not available", html)
+            self.assertIn("Add Pet", html)
