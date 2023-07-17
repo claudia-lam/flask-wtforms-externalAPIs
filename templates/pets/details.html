@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Pet Details{% endblock %}
+
+{% block content %}
+  <h1>Pet Details</h1>
+  <div>
+    <h3>Name: {{pet.name}}</h3>
+    {% if pet.photo_url %}<img src="{{pet.photo_url}}" alt="{{pet.name}}">{% endif %}
+    <p>Age: {{pet.age}}</p>
+    <p>Species: {{pet.species}}</p>
+  </div>
+{% endblock %}
