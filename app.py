@@ -62,7 +62,8 @@ def edit_pet(pet_id):
     """Display pet details; Pet edit form; handle editing. """
 
     pet = Pet.query.get_or_404(pet_id)
-    return render_template('pets/details.html', pet=pet)
+    form = PetForm(obj=pet)
+    return render_template('pets/details.html', pet=pet, form=form)
     # if validate on submit
     # add to db
     # otherwise
