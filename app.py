@@ -41,13 +41,17 @@ def add_pet():
     form = PetForm()
 
     if form.validate_on_submit():
-        new_pet = Pet(
-            name=form.name.data,
-            species=form.species.data,
-            photo_url=form.photo_url.data or None,
-            age=form.age.data,
-            notes=form.notes.data
-        )
+        print("FORM- DICT", form)
+
+        pet_dict = {field: field.data for field in form}
+        new_pet = Pet(pet_dict)
+        # new_pet = Pet(
+        #     name=form.name.data,
+        #     species=form.species.data,
+        #     photo_url=form.photo_url.data or None,
+        #     age=form.age.data,
+        #     notes=form.notes.data
+        # )
 
         db.session.add(new_pet)
         db.session.commit()
