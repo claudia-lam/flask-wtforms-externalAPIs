@@ -5,30 +5,32 @@
 {% block content %}
   <h1>Pet Details</h1>
   <div>
-    <h3>Name: {{pet.name}}</h3>
+    <p>Name: {{pet.name}}</p>
     {% if pet.photo_url %}<img src="{{pet.photo_url}}" alt="{{pet.name}}">{% endif %}
     <p>Age: {{pet.age}}</p>
     <p>Species: {{pet.species}}</p>
   </div>
 
-  <form id="pet-edit-form" method="POST">
-    {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+  <div>
+    <h2>Edit Pet</h2>
+    <form id="pet-edit-form" method="POST">
+      {{ form.hidden_tag() }} <!--add type=hidden form fields -->
 
-    {% for field in form
-           if field.widget.input_type != 'hidden' %}
+      {% for field in form
+            if field.widget.input_type != 'hidden' %}
 
-      <p>
-        {{ field.label }}
-        {{ field }}
+        <p>
+          {{ field.label }}
+          {{ field }}
 
-        {% for error in field.errors %}
-          {{ error }}
-        {% endfor %}
-      </p>
+          {% for error in field.errors %}
+            {{ error }}
+          {% endfor %}
+        </p>
 
-    {% endfor %}
+      {% endfor %}
 
-    <button type="submit">Submit</button>
-  </form>
-
+      <button type="submit">Submit</button>
+    </form>
+</div>
 {% endblock %}
