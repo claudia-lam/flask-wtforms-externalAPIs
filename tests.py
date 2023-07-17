@@ -68,3 +68,10 @@ class PetViewTestCase(TestCase):
             self.assertIn("test_pet", html)
             self.assertIn(f"is not available", html)
             self.assertIn("Add Pet", html)
+
+    def test_show_add_pet_form(self):
+        with self.client as c:
+            resp = c.get("/add")
+            html = resp.text
+
+            self.assertEqual(resp.status_code, 200)
