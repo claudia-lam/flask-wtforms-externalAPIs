@@ -98,5 +98,5 @@ class PetViewTestCase(TestCase):
             html = resp.text
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn("baby", html)
-            self.assertIn("dog", html)
+            self.assertIn("young", html)
+            self.assertIn("test_species", html)
