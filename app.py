@@ -2,10 +2,10 @@
 
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_debugtoolbar import DebugToolbarExtension
 
-from models import connect_db
+from models import connect_db, db, Pet
 
 app = Flask(__name__)
 
@@ -22,3 +22,10 @@ connect_db(app)
 # app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 toolbar = DebugToolbarExtension(app)
+
+
+@app.get("/")
+def show_homepage():
+
+    pets = Pet.query.all()
+    return render_template('pets/homepage.html', pets=pets)
