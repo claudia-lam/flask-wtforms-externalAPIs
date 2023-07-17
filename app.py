@@ -63,9 +63,14 @@ def edit_pet(pet_id):
 
     pet = Pet.query.get_or_404(pet_id)
     form = PetForm(obj=pet)
-    return render_template('pets/details.html', pet=pet, form=form)
-    # if validate on submit
-    # add to db
-    # otherwise
-    # get pet from db
-    # render the form
+
+    if form.validate_on_submit():
+        pet.photo_url = form.photo_url.data or None
+        pet.notes = form.notes.data
+        pet.available = form.available.data
+
+        db.session.commit()
+        return redirect("/")
+
+    else:
+        return render_template('pets/details.html', pet=pet, form=form)
