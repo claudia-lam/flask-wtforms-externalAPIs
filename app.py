@@ -4,6 +4,7 @@ import os
 
 from flask import Flask, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
+from werkzeug.utils import secure_filename
 
 from models import connect_db, db, Pet
 
@@ -41,9 +42,16 @@ def add_pet():
     form = PetForm()
 
     if form.validate_on_submit():
-        print("FORM- DICT", form)
 
         pet_dict = {field: field.data for field in form}
+
+        file = pet_dict['photo_upload'].data
+        filename = secure_filename(file.filename)
+
+        file.save(os.path.join(
+            app.instance_path, 'photos', filename
+        ))
+
         new_pet = Pet(pet_dict)
         # new_pet = Pet(
         #     name=form.name.data,
