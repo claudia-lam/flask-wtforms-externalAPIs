@@ -55,3 +55,14 @@ def add_pet():
 
     else:
         return render_template("/pets/add.html", form=form)
+
+
+@app.route("/<int:pet_id>", methods=["GET", "POST"])
+def edit_pet(pet_id):
+    """Display pet details; Pet edit form; handle editing. """
+
+    # if validate on submit
+    # add to db
+    # otherwise
+    # get pet from db
+    # render the form
