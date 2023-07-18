@@ -43,16 +43,17 @@ def add_pet():
 
     if form.validate_on_submit():
 
-        pet_dict = {field: field.data for field in form}
+        pet_dict = {key: val for key, val in form.data.items()
+                    if key != 'csrf_token'}
 
-        file = form.photo_upload.data
-        filename = secure_filename(file.filename)
+        # file = form.photo_upload.data
+        # filename = secure_filename(file.filename)
 
-        file.save(os.path.join(
-            'static/photos', filename
-        ))
+        # file.save(os.path.join(
+        #     'static/photos', filename
+        # ))
 
-        new_pet = Pet(pet_dict)
+        new_pet = Pet(**pet_dict)
         # new_pet = Pet(
         #     name=form.name.data,
         #     species=form.species.data,

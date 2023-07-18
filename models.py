@@ -43,11 +43,11 @@ class Pet(db.Model):
         default=''
     )
 
-    photo_upload = db.Column(
-        db.Text,
-        nullable=False,
-        default=''
-    )
+    # photo_upload = db.Column(
+    #     db.Text,
+    #     nullable=False,
+    #     default=''
+    # )
 
     age = db.Column(
         db.String(7),

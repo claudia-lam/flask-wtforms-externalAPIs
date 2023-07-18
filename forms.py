@@ -24,7 +24,7 @@ class PetForm(FlaskForm):
         "Photo URL",
         validators=[URL(), Optional()])
 
-    photo_upload = FileField("Photo Upload", validators=[Optional()])
+    # photo_upload = FileField("Photo Upload", validators=[Optional()])
 
     age = SelectField('Age',
                       validators=[InputRequired()],
