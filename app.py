@@ -45,11 +45,11 @@ def add_pet():
 
         pet_dict = {field: field.data for field in form}
 
-        file = pet_dict['photo_upload'].data
+        file = form.photo_upload.data
         filename = secure_filename(file.filename)
 
         file.save(os.path.join(
-            app.instance_path, 'photos', filename
+            'static/photos', filename
         ))
 
         new_pet = Pet(pet_dict)
