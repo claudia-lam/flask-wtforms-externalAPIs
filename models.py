@@ -40,7 +40,13 @@ class Pet(db.Model):
     photo_url = db.Column(
         db.Text,
         nullable=False,
-        default=' '
+        default=''
+    )
+
+    photo_upload = db.Column(
+        db.Text,
+        nullable=False,
+        default=''
     )
 
     age = db.Column(
