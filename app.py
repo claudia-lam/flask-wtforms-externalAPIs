@@ -28,11 +28,18 @@ PET_FINDER_URL = 'https://api.petfinder.com/v2/animals'
 
 toolbar = DebugToolbarExtension(app)
 
+auth_token = None
 
-@app.before_request()
+
+@app.before_first_request()
 def get_Oauth_token():
-    """Get Oauth token to make requests to the petfinder API. """
+    """Get Oauth token to make requests to the petfinder API and store globally."""
 
+    global auth_token
+    auth_token = update_auth_token_string()
+
+
+def update_auth_token_string():
     os.environ['API_SECRET_KEY'] = requests.post(
         'https://api.petfinder.com/v2/oauth2/token',
         {
@@ -41,6 +48,8 @@ def get_Oauth_token():
             "client_secret": os.environ['CLIENT_SECRET']
         }
     )
+
+    return os.environ['API_SECRET_KEY']
 
 
 @app.get("/")
