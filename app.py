@@ -44,7 +44,7 @@ def get_Oauth_token():
 
 
 def update_auth_token_string():
-    token = requests.post(
+    resp = requests.post(
         'https://api.petfinder.com/v2/oauth2/token',
         {
             "grant_type": "client_credentials",
@@ -53,6 +53,8 @@ def update_auth_token_string():
         }
     )
 
+    token = resp.json()['access_token']
+    print("auth token in update_auth_token_string", token)
     return token
 
 
@@ -61,6 +63,7 @@ def show_homepage():
     """Show list of all pets."""
 
     pets = Pet.query.all()
+    print("Auth token in show homepage", auth_token)
     pet_finder_data = requests.get(PET_FINDER_URL,
                                    params={"limit": 100},
                                    headers={"Authorization": f"Bearer {auth_token}"})
