@@ -3,7 +3,7 @@
 {% block title %}Homepage{% endblock %}
 
 {% block content %}
-  <h1>Pets</h1>
+  <h1>Our Pets</h1>
 {% for pet in pets %}
 
   {% if pet.available %}
@@ -30,4 +30,12 @@
 <form action="/add" method="get">
   <button>Add Pet</button>
 </form>
+<div>
+  <h2>Random Petfinder Pet</h2>
+  <div class="available">
+    <figure>
+      <a href="/{{pet.id}}"><img src="{{pet.photo_url}}" alt="a cute pet"></a>
+      <figcaption>{{pet.name}} is {{pet.availability}}</figcaption>
+    </figure>
+</div>
 {% endblock %}
