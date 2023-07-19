@@ -67,10 +67,9 @@ def show_homepage():
     pet_finder_data = requests.get(PET_FINDER_URL,
                                    params={"limit": 100},
                                    headers={"Authorization": f"Bearer {auth_token}"})
-    random_pet = random.choice(pet_finder_data["animals"])
-    breakpoint()
+    random_pet = random.choice(pet_finder_data.json()["animals"])
 
-    return render_template('pets/homepage.html', pets=pets)
+    return render_template('pets/homepage.html', pets=pets, random_pet=random_pet)
 
 
 @app.route("/add", methods=["GET", "POST"])
