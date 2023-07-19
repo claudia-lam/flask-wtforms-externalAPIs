@@ -33,7 +33,7 @@ toolbar = DebugToolbarExtension(app)
 auth_token = None
 
 
-@app.before_first_request()
+@app.before_request
 def get_Oauth_token():
     """Get Oauth token to make requests to the petfinder API and store globally."""
 
