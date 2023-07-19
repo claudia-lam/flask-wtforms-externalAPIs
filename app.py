@@ -1,8 +1,10 @@
 """Flask app for adopt app."""
 
 import os
+import random
+import requests
 
-from flask import Flask, render_template, redirect, requests, g
+from flask import Flask, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from werkzeug.utils import secure_filename
 
@@ -57,9 +59,12 @@ def show_homepage():
     """Show list of all pets."""
 
     pets = Pet.query.all()
-    random_pet = requests.get(PET_FINDER_URL,
-                              params={"limit": 100},
-                              headers={"Authorization": f"Bearer {auth_token}"})
+    pet_finder_data = requests.get(PET_FINDER_URL,
+                                   params={"limit": 100},
+                                   headers={"Authorization": f"Bearer {auth_token}"})
+    random_pet = random.choice(pet_finder_data["animals"])
+    breakpoint()
+
     return render_template('pets/homepage.html', pets=pets)
 
 
