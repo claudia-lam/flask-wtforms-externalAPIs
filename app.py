@@ -27,6 +27,11 @@ connect_db(app)
 toolbar = DebugToolbarExtension(app)
 
 
+@app.before_request()
+def get_Oauth_token():
+    """Get Oauth token to make requests to the petfinder API. """
+
+
 @app.get("/")
 def show_homepage():
     """Show list of all pets."""
