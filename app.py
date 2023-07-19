@@ -1,6 +1,7 @@
 """Flask app for adopt app."""
 
 import os
+from dotenv import load_dotenv
 import random
 import requests
 
@@ -30,6 +31,7 @@ PET_FINDER_URL = 'https://api.petfinder.com/v2/animals'
 
 toolbar = DebugToolbarExtension(app)
 
+load_dotenv()
 auth_token = None
 
 
@@ -42,16 +44,16 @@ def get_Oauth_token():
 
 
 def update_auth_token_string():
-    os.environ['API_SECRET_KEY'] = requests.post(
+    token = requests.post(
         'https://api.petfinder.com/v2/oauth2/token',
         {
             "grant_type": "client_credentials",
-            "client_id": os.environ['CLIENT_ID'],
-            "client_secret": os.environ['CLIENT_SECRET']
+            "client_id": os.environ['PET_FINDER_ID'],
+            "client_secret": os.environ['PET_FINDER_SECRET']
         }
     )
 
-    return os.environ['API_SECRET_KEY']
+    return token
 
 
 @app.get("/")
