@@ -2,7 +2,7 @@
 
 import os
 
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, requests
 from flask_debugtoolbar import DebugToolbarExtension
 from werkzeug.utils import secure_filename
 
@@ -30,6 +30,15 @@ toolbar = DebugToolbarExtension(app)
 @app.before_request()
 def get_Oauth_token():
     """Get Oauth token to make requests to the petfinder API. """
+
+    os.environ['API_SECRET_KEY'] = requests.post(
+        'https://api.petfinder.com/v2/oauth2/token',
+        {
+            "grant_type": "client_credentials",
+            "client_id": os.environ['CLIENT_ID'],
+            "client_secret": os.environ['CLIENT_SECRET']
+        }
+    )
 
 
 @app.get("/")
