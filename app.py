@@ -57,6 +57,9 @@ def show_homepage():
     """Show list of all pets."""
 
     pets = Pet.query.all()
+    random_pet = requests.get(PET_FINDER_URL,
+                              params={"limit": 100},
+                              headers={"Authorization": f"Bearer {auth_token}"})
     return render_template('pets/homepage.html', pets=pets)
 
 
