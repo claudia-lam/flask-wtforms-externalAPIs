@@ -2,7 +2,7 @@
 
 import os
 
-from flask import Flask, render_template, redirect, requests
+from flask import Flask, render_template, redirect, requests, g
 from flask_debugtoolbar import DebugToolbarExtension
 from werkzeug.utils import secure_filename
 
@@ -18,6 +18,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     "DATABASE_URL", "postgresql:///adopt")
 
 connect_db(app)
+
+PET_FINDER_URL = 'https://api.petfinder.com/v2/animals'
 
 # Having the Debug Toolbar show redirects explicitly is often useful;
 # however, if you want to turn it off, you can uncomment this line:
